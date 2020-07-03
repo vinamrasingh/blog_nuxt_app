@@ -4,11 +4,7 @@
 	</div>
 </template>
 <script>
-import PostList from "@/components/Posts/PostList";
 export default {
-	components: {
-		PostList
-	},
 	// fetch(context) {
 	// 	console.log("async data is executed");
 	// 	//Moving all code to nuxtServerInit
@@ -46,7 +42,8 @@ export default {
 		loadedPosts() {
 			return this.$store.getters.loadedPosts;
 		}
-	}
+	},
+	middleware: "log"
 	// },
 	// created(){
 	// 	this.$store.dispatch('setPosts',loadedPosts);

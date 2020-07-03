@@ -16,18 +16,12 @@ export default {
 	},
 	methods: {
 		onSubmitted(postData) {
-			axios
-				.post("https://nuxt-blog-98ccd.firebaseio.com/posts.json", {
-					...postData,
-					updatedDate: new Date()
-				})
-				.then(result => {
-					this.$router.push("/admin");
-					console.log(result);
-				})
-				.catch(e => console.log(e));
+			this.$store.dispatch('addPost', postData).then(()=>{
+				this.$router.push('/admin');
+			})
 		}
-	}
+	},
+	middleware:['checkAuth','auth']
 };
 </script>
 

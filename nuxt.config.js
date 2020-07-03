@@ -1,4 +1,4 @@
-
+const bodyParser=require('body-parser')
 export default {
   mode: 'universal',
   /*
@@ -24,11 +24,14 @@ export default {
   ** Global CSS
   */
   css: [
+    '~assets/styles/main.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~plugins/core-components.js',
+    '~plugins/date-filter.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -49,5 +52,27 @@ export default {
     */
     extend(config, ctx) {
     }
-  }
+  },
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-98ccd.firebaseio.com',
+    fbAPIKey: 'AIzaSyB9yQsBNUiqejHdkGCFeOn5RP8DN4NcI0Q'
+  },
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        path: '*',
+        component: resolve(__dirname, 'pages/index.vue'),
+        linkActiveClass: 'active'
+      })
+    },
+    middleware: 'log'
+  },
+  pageTransition: {
+    name: 'fade',
+    mode: 'out-in'
+  },
+  serverMiddleware: [
+    bodyParser.json(),
+    '~/api'
+  ]
 }

@@ -17,13 +17,11 @@
 </template>
 
 <script>
-import AppControlInput from "@/components/UI/AppControlInput";
-import AppButton from "@/components/UI/AppButton";
 export default {
 	data() {
 		return {
 			editedPost: this.post
-				? { ...this.post }
+				? { ...this.post}
 				: {
 						author: "",
 						title: "",
@@ -49,10 +47,6 @@ export default {
 			//Navigate back
 			this.$router.push("/admin");
 		}
-	},
-	components: {
-		AppControlInput,
-		AppButton
 	}
 };
 </script>
